@@ -47,12 +47,6 @@ $opcionMenu="A";
 		<?php 
 			include('../layout/encabezado.php');
 		 ?>
-
-		 <?php 
-		include('../layout/modal.php');
-    
-		?>
-
 	</header><!-- /header -->	
 	<div class="container-fluid" >
 	<div class="row" id="cuerpo" style="display:none">
@@ -121,7 +115,6 @@ $opcionMenu="A";
 			include('../layout/pie.php');
 		 ?>			
 
-
 	</footer>
 <!-- Modal -->
 	<div id="modalEditar" class="modal fade" role="dialog">
@@ -150,6 +143,18 @@ $opcionMenu="A";
 							<input type="text" id="usuarioE" class="form-control " required="" placeholder="Escribe el nombre de usuario">
 						</div>
 					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="form-group">
+							<label for="contraE">Contraseña:</label>
+							<input type="password" id="contraE" class="form-control " required="" placeholder="Escribe la contraseña">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="form-group">
+							<label for="vContraE">Verificar Contraseña:</label>
+							<input type="password" id="vContraE" class="form-control " required="" placeholder="Vuelve a esrcribir la contraseña">
+						</div>
+					</div>
 					<hr class="linea">
 				</div>
 	      </div>
@@ -168,8 +173,49 @@ $opcionMenu="A";
 		</form>
 	  </div>
 	</div>
+	<!-- paso 1 -->
+	<!-- Modal -->
+	<div id="modalEditarcontra" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-md">
 
-	
+	<!-- Modal content-->
+	    <form id="frmActulizacambio">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Cambiar mi contraseña</h4>
+	      </div>
+	      <div class="modal-body">
+				<input type="hidden" id="idA" value="<?php echo $idA;?>">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="form-group">
+							<label for="contraR">Nueva Contraseña:</label>
+							<input type="password" id="contraR" class="form-control " required="" placeholder="Escribe la contraseña">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="form-group">
+							<label for="vContraR">Verificar nueva Contraseña:</label>
+							<input type="password" id="vContraR" class="form-control " required="" placeholder="Vuelve a esrcribir la contraseña">
+						</div>
+					</div>
+					<hr class="linea">
+				</div>
+	      </div>
+	      <div class="modal-footer">
+				<div class="row">
+					<div class="col-lg-12">
+						<button type="button" id="btnCerrarR" class="btn btn-login  btn-flat  pull-left" data-dismiss="modal">Cerrar</button>
+						<button type="button" id="btnMostrarR" class="btn btn-login  btn-flat  pull-left" 
+						onclick="mostrarcontraseña()" value="oculto">
+						<i class="far fa-eye fa-lg" id="icoMostrarR"></i>
+						</button>
+						<input type="submit" class="btn btn-login  btn-flat  pull-right" value="Actualizar Información">	
+					</div>
+				</div>
+	      </div>
+	    </div>
 
 	<!-- ENLACE A ARCHIVOS JS -->
 
@@ -213,7 +259,7 @@ $opcionMenu="A";
 		<script src="../js/salir.js"></script>
 		<script src="../js/cambiarcontra.js"></script>
 		<!-- paso 2 -->
-		<script src="../js/contraseña.js"></script>
+		<script src="../js/funciones.js"></script>
 
     <!-- LLAMADAS A FUNCIONES E INICIALIZACION DE COMPONENTES -->
 

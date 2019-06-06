@@ -1,12 +1,17 @@
-
+<?php 
+include'../conexion/conexion.php';
+// Variables de configuración
+$titulo="Cargar fotografía del alumno";
+$opcionMenu="A";
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Sistema de Registros de Alumnos</title>
+	<title>Plantilla</title>
 
 	<!-- Meta para compatibilidad en dispositivos mobiles -->
-	<meta name="viewport" content="width=device-width, user-scalable=no,  initial-scale=1.0 maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap 3.3.5 -->
 	<link rel="stylesheet" type="text/css" href="../plugins/bootstrap/css/bootstrap.min.css">
@@ -28,13 +33,17 @@
     <link rel="stylesheet" href="../plugins/select2/select2.css">
 
 	<!-- Estilos propios -->
-	<link rel="stylesheet" type="text/css" href="../css/estilos1.css">
-	
-	<link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Oswald:400,300,700'>
+	<link rel="stylesheet" type="text/css" href="../css/estilos.css">
 
 	<!-- Alertify	 -->
 	<link rel="stylesheet" type="text/css" href="../plugins/alertifyjs/css/alertify.css">
 	<link rel="stylesheet" type="text/css" href="../plugins/alertifyjs/css/themes/bootstrap.css">
+
+	<!-- fileinput -->
+	<link href="../plugins/bootstrap-fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+
+	<!-- smoothbox -->
+	<link rel="stylesheet" href="../plugins/Smoothbox-master/css/smoothbox.css">
 </head>
 
 <body>
@@ -42,44 +51,69 @@
 		<?php 
 			include('../layout/encabezado.php');
 		 ?>
-
-		 <?php 
-		include('../layout/modal.php');
-    
-		?>
-
-		
-
 	</header><!-- /header -->	
-<div class="wrap">
-			<div class="widget">
-				<div class="fecha">
-					<p id="diaSemana" class="diaSemana">Jueves</p>
-					<p id="dia" class="dia">27</p>
-					<p>de</p>
-					<p id="mes" class="mes">Octubre</p>
-					<p>del</p>
-					<p id="year" class="year">2019</p>
-					
-				</div>
-
-				<div class="reloj">
-					<p id="horas" class="horas">06</p>
-					<p>:</p>
-					<p id="minutos" class="minutos">20</p>
-					<p>:</p>
-					<div class="caja-segundos">
-						<p id="ampm" class="ampm">PM</p>
-						<p id="segundos" class="segundos"></p>
-					</div>
-					
-				</div>
-				
+	<div class="container-fluid" >
+		<div class="row">
+		<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical" id="menu" style="display:none">
+			<?php 
+				include('menuv.php');
+			 ?>
 			</div>
-			
-		</div>
+			<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10 cont" id="titulo" style="display:none">
+			   <div class="titulo borde sombra">
+			        <h3><?php echo $titulo; ?></h3>
+			   </div>	
+			   <div class="contenido borde sombra">
+				    <div class="container-fluid">
 
-		
+				        <section id="lista">
+            
+				        </section>
+				    </div>
+			   </div>	
+
+			</div>			
+		</div>
+	</div>
+	<footer class="fondo">
+		<?php 
+			include('../layout/pie.php');
+		 ?>			
+
+	</footer>
+
+	<!-- Modal -->
+	<div id="modalSubir" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-md">
+
+	    <!-- Modal content-->
+	    <form id="frmSubir">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Selecciona la fotografía del alumno</h4>
+	      </div>
+	      <div class="modal-body">
+					<div class="form-group">
+								<!-- <label for="image">Nueva imagen</label> -->
+								<input type="file" class="form-control-file" name="image" id="image">
+								<input type="hidden" class="form-control-file" name="mat" id="mat">
+          </div>
+	      </div>
+	      <div class="modal-footer">
+				<div class="row">
+					<div class="col-lg-12">
+						<button type="button" id="btnCerrar" class="btn btn-login  btn-flat  pull-left" data-dismiss="modal">Cerrar</button>
+						<input type="button" class="btn btn-login  btn-flat  pull-right upload" value="Subir Fotografía">
+					</div>
+				</div>
+	      </div>
+	    </div>
+		</form>
+	  </div>
+	</div>
+	<!-- Modal -->
+
 	<!-- ENLACE A ARCHIVOS JS -->
 
 	<!-- jquery -->
@@ -120,10 +154,7 @@
     <script src="../js/menu.js"></script>
     <script src="../js/precarga.js"></script>
 		<script src="../js/salir.js"></script>
-		<script src="../js/cambiarcontra.js"></script>
-		<!-- paso 2 -->
-		<script src="../js/contraseña.js"></script>
-		<script src="../js/reloj.js"></script>
+
     <!-- LLAMADAS A FUNCIONES E INICIALIZACION DE COMPONENTES -->
 
     <!-- Llamar la funcion para llenar la lista -->
@@ -144,11 +175,23 @@
 		$(document).ready(function() { menuActivo(letra); });
 	</script>
 
-	<script type="text/javascript" src="../plugins/stacktable/stacktable.js"></script> 
+	<script type="text/javascript" src="../plugins/stacktable/stacktable.js"></script>
 	<script>
 		window.onload = function() {
-			$("#cuerpo").fadeIn("slow");
+			$("#listaInicial").fadeIn("slow");
+			$("#menu").fadeIn("slow");
+			$("#titulo").fadeIn("slow");
 		};	
-	</script>
+	</script> 
+
+	<script src="../plugins/bootstrap-fileinput-master/js/plugins/piexif.js" type="text/javascript"></script>
+    <script src="../plugins/bootstrap-fileinput-master/js/plugins/sortable.js" type="text/javascript"></script>
+    <script src="../plugins/bootstrap-fileinput-master/js/fileinput.js" type="text/javascript"></script>
+    <script src="../plugins/bootstrap-fileinput-master/js/locales/fr.js" type="text/javascript"></script>
+    <script src="../plugins/bootstrap-fileinput-master/js/locales/es.js" type="text/javascript"></script>
+    <script src="../plugins/bootstrap-fileinput-master/themes/fas/theme.js" type="text/javascript"></script>
+    <script src="../plugins/bootstrap-fileinput-master/themes/explorer-fas/theme.js" type="text/javascript"></script>
+
+
 </body>
 </html>

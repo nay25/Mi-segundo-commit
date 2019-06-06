@@ -1,9 +1,6 @@
 <?php 
-include'../conexion/conexion.php';
-
-// Variables de configuración
-$titulo="Sistema de Registros de Alumnos";
-$opcionMenu="A";
+$fecha1=date("Y-m-d"); 
+$fecha2=date("Y-m-d");
 
  ?>
 <!DOCTYPE html>
@@ -11,7 +8,6 @@ $opcionMenu="A";
 <head>
 	<meta charset="UTF-8">
 	<title>Sistema de Registros de Alumnos</title>
-
 	<!-- Meta para compatibilidad en dispositivos mobiles -->
 	<meta name="viewport" content="width=device-width, user-scalable=no,  initial-scale=1.0 maximum-scale=1.0, minimum-scale=1.0">
 
@@ -54,9 +50,22 @@ $opcionMenu="A";
 		include('../layout/modal.php');
     
 		?>
-	</header><!-- /header -->
+	</header><!-- /header -->		
+	<div class="container-fluid" >
+	<div class="row" id="cuerpo" style="display:none">
+			<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical">
+			<?php 
+				
+			include('../layout/menuv.php');
+			 ?>
+			</div>
+			<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10 cont">
+			   <div class="titulo borde sombra">
+			        <h3><?php echo $titulo; ?></h3>
+			   </div>	
+			   <div class="contenido borde sombra">
 
-	<div class="wrap">
+			   	<div class="wrap">
 			<div class="widget">
 				<div class="fecha">
 					<p id="diaSemana" class="diaSemana"></p>
@@ -84,20 +93,24 @@ $opcionMenu="A";
 			
 		</div>
 
+		<section id="fechas" style="margin: top: 60px;">
 			
-	<div class="container-fluid" >
-	<div class="row" id="cuerpo" style="display:none">
-			<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical">
-			<?php 
+			<div class="row">
+				<div class="form-control">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-3">
+						<label class="colorLetra">Seleccione la fecha:</label>
+						<input type="date" id="fecha1" class="form-control" placeholder="yyyy-mm-dd" value="<?php echo $fecha1;?> " onchange="llenar_lista();">
+					</div>
 				
-			include('../layout/menuv.php');
-			 ?>
+
+			<div class="form-control">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-3">
+						<label class="colorLetra">Seleccione la fecha:</label>
+						<input type="date" id="fecha2" class="form-control" placeholder="yyyy-mm-dd" value="<?php echo $fecha2;?> " onchange="llenar_lista();">
+					</div>
+				
 			</div>
-			<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10 cont">
-			   <div class="titulo borde sombra">
-			        <h3><?php echo $titulo; ?></h3>
-			   </div>	
-			   <div class="contenido borde sombra">
+		</section>
 			   	  <h3>Lista de alumnos ingresados al CC</h3>
 				    <div class="container-fluid">
 				        <section id="alta" style="display: none">

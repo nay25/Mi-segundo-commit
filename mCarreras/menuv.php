@@ -8,9 +8,9 @@
 							</a>
 						</li>
 						<li class="list-unstyled">
-							<a href="" id="mnuB" class="menuInicio">
-								<i class="far fa-file-alt"></i> Reportes 
-							</a>
+						<a href="#" onclick="imprimir();" id="mnuB" class="menuInicio">
+						<i class="far fa-file-pdf"></i> Reportes 
+						</a>
 						</li >
 						<li class="list-unstyled" class="menuInicio">
 							<a href="../inicio/index.php" id="mnuC">
